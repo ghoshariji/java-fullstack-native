@@ -13,7 +13,7 @@ const CustomToast = ({ visible, message, onHide }) => {
       }).start(() => {
         setTimeout(() => {
           hideToast();
-        }, 2000); // Toast will disappear after 2 seconds
+        }, 4000);
       });
     } else {
       Animated.timing(fadeAnim, {
@@ -48,11 +48,15 @@ const styles = StyleSheet.create({
     left: 20,
     right: 20,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    padding: 10,
-    borderRadius: 5,
+    padding: 16,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   message: {
     color: '#ffffff',
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
 

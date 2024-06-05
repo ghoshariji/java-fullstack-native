@@ -29,7 +29,7 @@ const Settings = ({ navigation }) => {
               style={styles.sectionTitle}
               onPress={() => navigation.navigate("Result")}
             >
-              Driving Report Card
+              My Order
             </Text>
             <View style={styles.arrowContainer}>
               <TouchableOpacity onPress={() => navigation.navigate("Result")}>

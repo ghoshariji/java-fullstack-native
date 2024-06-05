@@ -15,7 +15,6 @@ import { FontAwesome } from "@expo/vector-icons";
 import Button from "../componets/Button";
 import COLORS from "../constants/colors";
 import { Image } from "expo-image";
-import CustomToast from "../componets/Customtoast";
 
 const Homeuser = ({ navigation }) => {
   const toastRef = useRef(null);
@@ -77,9 +76,6 @@ const Homeuser = ({ navigation }) => {
           <Ionicons name="settings-outline" size={24} color="black" />
         </Pressable>
       </View>
-
-
-    <CustomToast visible={true} message="This is a toast message" onHide={() => hideToast()} />
 
 
       {/* Content */}

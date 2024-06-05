@@ -6,31 +6,55 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  ActivityIndicator
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from "../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import Button from "../componets/Button";
+import { signup } from "../api/authApi";
+import CustomToast from "../componets/Customtoast";
 
 const Signup = ({ navigation }) => {
+  const [toast, setToast] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [toastmesg, setToastMesg] = useState(null)
   const [post, setPost] = useState({
     name: "",
     email: "",
-    phone: "",
+    about: "",
     password: "",
   });
-  const handleInput = (event) => {
-    setPost({ ...post, [event.target.name]: event.target.value });
+  const handleInput = (name, value) => {
+    setPost({ ...post, [name]: value });
   };
   const [errorMessage, setErrorMessage] = useState("");
   const [isPasswordShown, setIsPasswordShown] = useState(false);
 
-  const handleSignup = async () => {};
+  const handleSignup = async (e) => {
+    setLoading(true)
+    e.preventDefault();
+    try {
+      const data = await signup(post);
+      setToast(true)
+      setToastMesg("Register Successfully");
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      setToast(true)
+      setToastMesg("Something went Wrong");
+    }
+  };
 
   return (
     <ScrollView>
       <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
+      {loading && (
+        <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+          <ActivityIndicator size="large" color="white" />
+        </View>
+      )}
         <View style={{ flex: 1, marginHorizontal: 22 }}>
           <View style={{ marginVertical: 22 }}>
             <Text
@@ -50,11 +74,14 @@ const Signup = ({ navigation }) => {
                 color: COLORS.black,
               }}
             >
-              Connect with your future Job!
+              Connect with your future Step!
             </Text>
           </View>
 
+
+
           <View style={{ marginBottom: 12 }}>
+            <CustomToast visible={toast} message={toastmesg} onHide={() => hideToast()} />
             <Text
               style={{
                 fontSize: 16,
@@ -79,7 +106,7 @@ const Signup = ({ navigation }) => {
             >
               <TextInput
                 value={post.name}
-                onChangeText={handleInput}
+                onChangeText={(text) => handleInput("name", text)}
                 placeholder="Enter your name"
                 placeholderTextColor={COLORS.black}
                 keyboardType="default"
@@ -115,10 +142,11 @@ const Signup = ({ navigation }) => {
             >
               <TextInput
                 value={post.email}
-                onChangeText={handleInput}
+                onChangeText={(text) => handleInput("email", text)}
                 placeholder="Enter your email address"
                 placeholderTextColor={COLORS.black}
                 keyboardType="email-address"
+
                 style={{
                   width: "100%",
                 }}
@@ -134,7 +162,7 @@ const Signup = ({ navigation }) => {
                 marginVertical: 8,
               }}
             >
-              Mobile Number
+              About yourself
             </Text>
 
             <View
@@ -150,24 +178,13 @@ const Signup = ({ navigation }) => {
                 paddingLeft: 22,
               }}
             >
-              <TextInput
-                placeholder="+91"
-                placeholderTextColor={COLORS.black}
-                keyboardType="numeric"
-                style={{
-                  width: "12%",
-                  borderRightWidth: 1,
-                  borderLeftColor: COLORS.grey,
-                  height: "100%",
-                }}
-              />
+
 
               <TextInput
-                value={post.phone}
-                onChangeText={handleInput}
-                placeholder="Enter your phone number"
+                value={post.about}
+                onChangeText={(text) => handleInput("about", text)}
+                placeholder="Enter About yourself"
                 placeholderTextColor={COLORS.black}
-                keyboardType="numeric"
                 style={{
                   width: "80%",
                 }}
@@ -200,7 +217,7 @@ const Signup = ({ navigation }) => {
             >
               <TextInput
                 value={post.password}
-                onChangeText={handleInput}
+                onChangeText={(text) => handleInput("password", text)}
                 placeholder="Enter your password"
                 placeholderTextColor={COLORS.black}
                 secureTextEntry={isPasswordShown}

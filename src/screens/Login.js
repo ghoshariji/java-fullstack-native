@@ -5,14 +5,20 @@ import {
   Pressable,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from "../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import Button from "../componets/Button";
-
+import CustomToast from "../componets/Customtoast";
+import { login } from "../api/authApi";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Login = ({ navigation }) => {
+  const [toast, setToast] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [toastmesg, setToastMesg] = useState(null)
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [post, setPost] = useState({
@@ -21,14 +27,39 @@ const Login = ({ navigation }) => {
   });
 
   const handleInput = (event) => {
+
     setPost({ ...post, [event.target.name]: event.target.value });
   };
-  const handleLogin = async () => {
-    navigation.navigate("Userdash")
+  const handleLogin = async (e) => {
+    setLoading(true)
+    e.preventDefault()
+    try {
+      
+      const data = await login(post);
+      await AsyncStorage.setItem("email",email)
+      setLoading(false)
+      setToastMesg("Login Successfully");
+      setToast(true)
+ 
+
+    } catch (error) {
+      setLoading(false)
+      setToast(true)
+      setToastMesg("Something went Wrong");
+    }
+    setTimeout(() => {
+      navigation.navigate("Userdash")
+    }, 800);
   };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
+
+      {loading && (
+        <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+          <ActivityIndicator size="large" color="white" />
+        </View>
+      )}
       <View style={{ flex: 1, marginHorizontal: 22 }}>
         <View style={{ marginVertical: 22 }}>
           <Text
@@ -53,6 +84,7 @@ const Login = ({ navigation }) => {
         </View>
 
         <View style={{ marginBottom: 12 }}>
+          <CustomToast visible={toast} message={toastmesg} onHide={() => hideToast()} />
           <Text
             style={{
               fontSize: 16,
