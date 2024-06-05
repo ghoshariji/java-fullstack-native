@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
-const Timetable = () => {
+const Schedule = () => {
   // Dummy data for demonstration
   const timetableData = [
     { date: 'May 10, 2024', class1: { sir: 'John Doe', subject: 'Math', time: '9:00 AM - 10:30 AM' }, class2: { sir: 'Jane Smith', subject: 'Science', time: '11:00 AM - 12:30 PM' }, batch: 'Batch A' },
@@ -61,4 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Timetable;
+export default Schedule;

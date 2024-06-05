@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
-import { Ionicons } from "@expo/vector-icons"; // Import Ionicons from expo/vector-icons
+import { Ionicons } from "@expo/vector-icons"; 
 
 const Profile = () => {
   const [changeNameModalVisible, setChangeNameModalVisible] = useState(false);
@@ -43,7 +43,6 @@ const Profile = () => {
 
   const handleChangeProfilePic = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({});
-    console.log(result.assets[0].uri)
     if (!result.cancelled) {
       setProfileImage(result.assets[0].uri);
     }
@@ -62,7 +61,7 @@ const Profile = () => {
           source={
             profileImage
               ? { uri: profileImage }
-              : require("../assets/welcome.jpg")
+              : "https://thumbs.dreamstime.com/b/user-profile-icon-vector-avatar-person-picture-portrait-symbol-neutral-gender-silhouette-circle-button-photo-blank-272664038.jpg"
           } // Replace with your image source
           style={styles.profileImage}
         />

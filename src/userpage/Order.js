@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
 
-const Contact = () => {
+const Order = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -22,6 +22,7 @@ const Contact = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Apply for Driving Center</Text>
       <TextInput
         style={styles.input}
         placeholder="Name"
@@ -44,27 +45,39 @@ const Contact = () => {
       />
       <TextInput
         style={[styles.input, styles.queryInput]}
-        placeholder="Query"
+        placeholder="Address"
         value={query}
         onChangeText={setQuery}
         multiline
         numberOfLines={4}
       />
-      <Button title="Submit" onPress={handleSubmit} />
+      <Button title="Apply now" onPress={handleSubmit} color="#1E90FF" />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    justifyContent: 'center',
     padding: 20,
+    backgroundColor: '#f8f9fa',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+    color: '#333',
   },
   input: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: '#ccc',
     borderWidth: 1,
+    borderRadius: 5,
     marginBottom: 10,
     paddingHorizontal: 10,
+    backgroundColor: '#fff',
   },
   queryInput: {
     height: 100,
@@ -72,4 +85,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Contact;
+export default Order;

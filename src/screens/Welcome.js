@@ -1,8 +1,9 @@
-import { View, Text, Pressable, Image, } from 'react-native'
+import { View, Text, Pressable, } from 'react-native'
 import React, { useEffect } from 'react'
 import COLORS from '../constants/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '../componets/Button';
+import { Image } from 'expo-image'; 
 
 const Welcome = ({ navigation }) => {
     
@@ -31,7 +32,7 @@ const Welcome = ({ navigation }) => {
                     />
 
                     <Image
-                        source={require("../assets/welcome1.jpg")}
+                        source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVLNExSIbR9y5ltANHGtG0HMtTX9rQx6bpwg&s"
                         style={{
                             height: 100,
                             width: 100,
@@ -48,7 +49,7 @@ const Welcome = ({ navigation }) => {
                     />
 
                     <Image
-                        source={require("../assets/welcome2.jpg")}
+                        source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPdDsIfrOmc1lonGSxxnpseNd7LidqnbiO3w&s"
                         style={{
                             width: 100,
                             height: 100,
@@ -65,7 +66,7 @@ const Welcome = ({ navigation }) => {
                     />
 
                     <Image
-                        source={require("../assets/welcome.jpg")}
+                        source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpID6Pkl80qb17FJ12P8pOHaVhWMy2LhmN2Q&s"
                         style={{
                             height: 200,
                             width: 200,

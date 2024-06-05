@@ -1,12 +1,9 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Homeuser from "./Homeuser";
-
-
 import { Ionicons } from "@expo/vector-icons";
-import Courses from "./Courses";
-import Menu from "./Menu";
-// import Notice from "./Notice";
+import Order from "./Order";
+import Settings from "./Settings";
 
 const Tab = createBottomTabNavigator();
 
@@ -37,49 +34,27 @@ const Userhome = ({ route }) => {
           ),
         }}
       />
-      {/* <Tab.Screen
-        name="Course"
-        component={Courses}
+      <Tab.Screen
+        name="Order"
+        component={Order}
         options={{
-          tabBarLabel: "Course",
+          tabBarLabel: "Apply Drive",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="alert-circle-outline" color={color} size={size} />
-          ),
-        }}
-      />
-     <Tab.Screen
-        name="Menu"
-        component={Menu}
-        // initialParams={{ paramKey: id, name: name }}
-        options={{
-          tabBarLabel: "Menu",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="book" color={color} size={size} />
-          ),
-        }}
-      /> */}
-      {/*  <Tab.Screen
-        name="Result"
-        component={Resultuser}
-        initialParams={{ paramKey: id }}
-        options={{
-          tabBarLabel: "Result",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="list" color={color} size={size} />
+            <Ionicons name="car-outline" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={Profileuser}
-        initialParams={{ name: name ,id: id}}
+        name="Settings"
+        component={Settings}
         options={{
-          tabBarLabel: "Profile",
+          tabBarLabel: "Settings",
+          headerShown:true,
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" color={color} size={size} />
+            <Ionicons name="settings-outline" color={color} size={size} />
           ),
         }}
-      />  */}
+      />
     </Tab.Navigator>
   );
 };

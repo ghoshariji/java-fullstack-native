@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import {
   View,
   Text,
-  Image,
   ScrollView,
   StyleSheet,
   SafeAreaView,
@@ -12,24 +11,14 @@ import {
   Linking,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"; // Assuming you're using FontAwesome icons
 import { FontAwesome } from "@expo/vector-icons";
 import Button from "../componets/Button";
-import COLORS from "../constants/colors";  
-
-
-
-// import { WebView } from "react-native-webview";
-
-// import { YouTubeStandaloneAndroid, YouTubeStandaloneIOS } from "react-native-youtube";
-
-// import {
-//   faYoutube,
-//   faTelegram,
-//   faInstagram,
-// } from "@fortawesome/free-brands-svg-icons"; // Importing specific brand icons
+import COLORS from "../constants/colors";
+import { Image } from "expo-image";
+import CustomToast from "../componets/Customtoast";
 
 const Homeuser = ({ navigation }) => {
+  const toastRef = useRef(null);
   const openLink = (url) => {
     Linking.openURL(url);
   };
@@ -40,30 +29,25 @@ const Homeuser = ({ navigation }) => {
   const youtubeVideos = [
     {
       id: "VIDEO_ID_1",
-      title: "Introduction to React Native",
+      title: "Introduction to driving",
       thumbnail:
-        "https://fastly.picsum.photos/id/1050/200/300.jpg?hmac=mMZp1DAD5EpHCZh-YBwfvrg5w327V3DoJQ8CmRAKF70",
-      embedUrl:
-        "https://www.youtube.com/watch?v=MYAWZQ_YOpQ&ab_channel=BarasatAcademicAssociation",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjedNhMUPepo9XrHrytZQ1IoQ-rEIPPZ9bKA&s",
+      embedUrl: "https://youtu.be/O1m0sc4D9Ps?si=scrXQ6k8a-KrHQVv",
     },
     {
       id: "VIDEO_ID_1",
-      title: "Introduction to React Native",
+      title: "Driving test four wheeler",
       thumbnail:
-        "https://fastly.picsum.photos/id/1050/200/300.jpg?hmac=mMZp1DAD5EpHCZh-YBwfvrg5w327V3DoJQ8CmRAKF70",
-      embedUrl:
-        "https://www.youtube.com/watch?v=MYAWZQ_YOpQ&ab_channel=BarasatAcademicAssociation",
+        "https://img.freepik.com/free-vector/flat-design-driving-school-youtube-thumbnail_23-2149272286.jpg",
+      embedUrl: "https://youtu.be/z727XNSlJPI?si=u5svjqsiRycPiVRw",
     },
     {
       id: "VIDEO_ID_1",
-      title: "Introduction to React Native",
+      title: "Driving test two wheeler",
       thumbnail:
-        "https://fastly.picsum.photos/id/1050/200/300.jpg?hmac=mMZp1DAD5EpHCZh-YBwfvrg5w327V3DoJQ8CmRAKF70",
-      embedUrl:
-        "https://www.youtube.com/watch?v=MYAWZQ_YOpQ&ab_channel=BarasatAcademicAssociation",
+        "https://www.shutterstock.com/shutterstock/videos/3410742097/thumb/11.jpg?ip=x480",
+      embedUrl: "https://youtu.be/AhtUDLzlYj0?si=ozLOA3Z-MmX_iiXl",
     },
-
-    // Add more YouTube video IDs here
   ];
 
   const [currentVideo, setCurrentVideo] = useState(null);
@@ -79,27 +63,24 @@ const Homeuser = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <Ionicons name="home" size={24} color="black" /> */}
-
-      {/* Header */}
       <View style={styles.header}>
         {/* Profile Section */}
         <View style={styles.profileSection}>
           <Image
-            source={require("../assets/welcome.jpg")}
+            source="https://thumbs.dreamstime.com/b/user-profile-icon-vector-avatar-person-picture-portrait-symbol-neutral-gender-silhouette-circle-button-photo-blank-272664038.jpg"
             style={styles.profileImage}
           />
           <Text style={styles.profileName}>Hey, John Doe</Text>
         </View>
         {/* Settings Icon */}
-        <Pressable onPress={() => navigation.navigate("Profileuser")}>
+        <Pressable onPress={() => navigation.navigate("Profile")}>
           <Ionicons name="settings-outline" size={24} color="black" />
         </Pressable>
       </View>
 
-      {/* <TouchableOpacity onPress={()=>handlePayment("da","das","das","das","das","wdasddsaw")}>
-        <Text>Open</Text>
-      </TouchableOpacity> */}
+
+    <CustomToast visible={true} message="This is a toast message" onHide={() => hideToast()} />
+
 
       {/* Content */}
       <ScrollView style={styles.content}>
@@ -107,32 +88,55 @@ const Homeuser = ({ navigation }) => {
         <View style={styles.section}>
           <ScrollView horizontal={true}>
             <Image
-              source={require("../assets/d1.jpg")}
+              source="https://www.prathammotors.com/pm/images/d1.jpg"
               style={styles.institutionImage}
             />
             <Image
-              source={require("../assets/d2.avif")}
+              source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdfY23tAcEQObdmJzTC3FVLMYqTBbXVwGf9A&s"
               style={styles.institutionImage}
             />
             <Image
-              source={require("../assets/d3.jpg")}
+              source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp2ngBicWsswnS6mdfgZoar6bsm_36LougxQ&s"
               style={styles.institutionImage}
             />
             <Image
-              source={require("../assets/d5.jpg")}
+              source="https://www.universaldriving.ca/wp-content/uploads/2023/11/Beginners-To-Learn-Car-Driving.png"
               style={styles.institutionImage}
             />
             <Image
-              source={require("../assets/welcome.jpg")}
+              source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVPk72HOdu55nzlMlv95XfjAOP3FKIsy92rg&s"
               style={styles.institutionImage}
             />
             {/* Add more institution images here */}
           </ScrollView>
         </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>
+            Why is driving Licence important to us?
+          </Text>
+          <ScrollView horizontal={true}>
+            {/* Success Story Cards */}
+            <View style={styles.successCard}>
+              <View style={styles.successCardContent}>
+                {/* <Text style={styles.successTitle}>Success Story Title</Text> */}
+                <Text style={styles.successText}>
+                  As a responsible citizen, one should always get oneself a
+                  driving licence if they wish to drive any motor vehicles. This
+                  is not just for the safety of self but for the safety of
+                  others on the roads as well. Apart from this, owning a driving
+                  licence gives you additional personal identification proof.
+                </Text>
+              </View>
+            </View>
+            {/* Add more success story cards here */}
+          </ScrollView>
+        </View>
+
         <View style={styles.specialOffer}>
           <Text style={styles.sectionTitle}>#Coming Soon</Text>
           <Image
-            source={require("../assets/welcome.jpg")}
+            source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtYZ9YTlv48MUWyLG0gwTbOAfEHD5ewIfrpw&s"
             style={styles.specialOfferImage}
           />
         </View>
@@ -140,7 +144,7 @@ const Homeuser = ({ navigation }) => {
         {/* free course */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>
-            Free courses available on YouTube
+            Demo Video available on YouTube
           </Text>
           <ScrollView horizontal={true}>
             {youtubeVideos.map((video, index) => (
@@ -171,185 +175,6 @@ const Homeuser = ({ navigation }) => {
             ))}
           </ScrollView>
         </View>
-        {/* Popular Courses Section */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Our Popular Courses</Text>
-          {/* Course Cards */}
-          <ScrollView horizontal={true}>
-            {/* Course Card 1 */}
-            <View style={styles.courseCard}>
-              <Image
-                source={require("../assets/welcome.jpg")}
-                style={styles.courseImage}
-              />
-              <Text style={styles.courseTitle}>Course Title</Text>
-              <View style={styles.priceContainer}>
-                <Text style={styles.discountPrice}>$99</Text>
-                <Text style={styles.originalPrice}>$129</Text>
-                <View style={styles.discountTag}>
-                  <Text style={styles.discountTagText}>20% OFF</Text>
-                </View>
-              </View>
-              <Button
-                title="Buy now"
-                filled
-                style={{
-                  marginTop: 15,
-                  width: "100%",
-                  color: "#4b52db",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              />
-            </View>
-            <View style={styles.courseCard}>
-              <Image
-                source={require("../assets/welcome.jpg")}
-                style={styles.courseImage}
-              />
-              <Text style={styles.courseTitle}>Course Title</Text>
-              <View style={styles.priceContainer}>
-                <Text style={styles.discountPrice}>$99</Text>
-                <Text style={styles.originalPrice}>$129</Text>
-                <View style={styles.discountTag}>
-                  <Text style={styles.discountTagText}>20% OFF</Text>
-                </View>
-              </View>
-              <Button
-                title="Buy now"
-                filled
-                style={{
-                  marginTop: 15,
-                  width: "100%",
-                  color: "#4b52db",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              />
-            </View>
-            <View style={styles.courseCard}>
-              <Image
-                source={require("../assets/welcome.jpg")}
-                style={styles.courseImage}
-              />
-              <Text style={styles.courseTitle}>Course Title</Text>
-              <View style={styles.priceContainer}>
-                <Text style={styles.discountPrice}>$99</Text>
-                <Text style={styles.originalPrice}>$129</Text>
-                <View style={styles.discountTag}>
-                  <Text style={styles.discountTagText}>20% OFF</Text>
-                </View>
-              </View>
-              <Button
-                title="Buy now"
-                filled
-                style={{
-                  marginTop: 15,
-                  width: "100%",
-                  color: "#4b52db",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              />
-            </View>
-            <View style={styles.courseCard}>
-              <Image
-                source={require("../assets/welcome.jpg")}
-                style={styles.courseImage}
-              />
-              <Text style={styles.courseTitle}>Course Title</Text>
-              <View style={styles.priceContainer}>
-                <Text style={styles.discountPrice}>$99</Text>
-                <Text style={styles.originalPrice}>$129</Text>
-                <View style={styles.discountTag}>
-                  <Text style={styles.discountTagText}>20% OFF</Text>
-                </View>
-              </View>
-              <Button
-                title="Buy now"
-                filled
-                style={{
-                  marginTop: 15,
-                  width: "100%",
-                  color: "#4b52db",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              />
-            </View>
-            <View style={styles.courseCard}>
-              <Image
-                source={require("../assets/welcome.jpg")}
-                style={styles.courseImage}
-              />
-              <Text style={styles.courseTitle}>Course Title</Text>
-              <View style={styles.priceContainer}>
-                <Text style={styles.discountPrice}>$99</Text>
-                <Text style={styles.originalPrice}>$129</Text>
-                <View style={styles.discountTag}>
-                  <Text style={styles.discountTagText}>20% OFF</Text>
-                </View>
-              </View>
-              <Button
-                title="Buy now"
-                filled
-                style={{
-                  marginTop: 15,
-                  width: "100%",
-                  color: "#4b52db",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              />
-            </View>
-            {/* Add more course cards here */}
-          </ScrollView>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Our Faculties</Text>
-          <ScrollView horizontal={true}>
-            <Image
-              source={require("../assets/welcome.jpg")}
-              style={styles.institutionImage1}
-            />
-            <Image
-              source={require("../assets/welcome.jpg")}
-              style={styles.institutionImage1}
-            />
-            <Image
-              source={require("../assets/welcome.jpg")}
-              style={styles.institutionImage1}
-            />
-            <Image
-              source={require("../assets/welcome.jpg")}
-              style={styles.institutionImage1}
-            />
-            <Image
-              source={require("../assets/welcome.jpg")}
-              style={styles.institutionImage1}
-            />
-            {/* Add more institution images here */}
-          </ScrollView>
-        </View>
-
-        {/* Success Stories Section */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Success Stories</Text>
-          <ScrollView horizontal={true}>
-            {/* Success Story Cards */}
-            <View style={styles.successCard}>
-              <View style={styles.successCardContent}>
-                <Text style={styles.successTitle}>Success Story Title</Text>
-                <Text style={styles.successText}>
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                  venenatis, justo eu cursus venenatis, lorem nisi fringilla
-                </Text>
-              </View>
-            </View>
-            {/* Add more success story cards here */}
-          </ScrollView>
-        </View>
 
         {/* query section */}
         <View
@@ -378,7 +203,7 @@ const Homeuser = ({ navigation }) => {
             {/* Right Section */}
             <View style={styles.rightSection}>
               <Image
-                source={require("../assets/welcome.jpg")}
+                source="https://media.bizj.us/view/img/10847862/howtophoneskills*900xx6048-3415-0-185.jpg"
                 style={styles.circularImage} // Updated style here
               />
             </View>

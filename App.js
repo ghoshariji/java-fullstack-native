@@ -6,6 +6,11 @@ import Welcome from './src/screens/Welcome';
 import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
 import Userhome from './src/userpage/Userdash';
+import Result from './src/userpage/Result';
+import Schedule from './src/userpage/Schedule';
+import Certificate from './src/userpage/Certificate';
+import ChatWithAdmin from './src/userpage/Chatwithadmin';
+import Profile from './src/userpage/Profile';
 
 const Stack = createStackNavigator()
 
@@ -26,6 +31,16 @@ const App = () => {
           name='Signup' component={Signup} />
             <Stack.Screen
           name='Userdash' component={Userhome} />
+            <Stack.Screen
+          name='Result' component={Result} options={{headerShown:true}} />
+          <Stack.Screen
+          name='Schedule' component={Schedule} options={{headerShown:true}} />
+            <Stack.Screen
+          name='Certificate' component={Certificate} options={{headerShown:true}} />
+           <Stack.Screen
+          name='Chat Us' component={ChatWithAdmin} options={{headerShown:true}} />
+          <Stack.Screen
+          name='Profile' component={Profile} options={{headerShown:true}} />
       </Stack.Navigator>
     </NavigationContainer>
   )
